@@ -1,4 +1,4 @@
-# SynthCodeLab
+<h1 align="center" style="color: #ff79c6; font-family: 'Courier New', Courier, monospace;">SynthCodeLab</h1>
 A platform to learn how to take back what is yours.
 ## Welcome to SynthCodeLab
 
@@ -61,3 +61,11 @@ Join our community of like-minded individuals who are passionate about the golde
     X: @SynthCodeLab
 
 License
+????
+
+Remember, in the world of SynthCodeLab, you are a time-traveling hacker, learning and teaching the secrets of computing with every keystroke.
+
+SynthCodeLab - Relive the Golden Age of Hacking and Learning
+
+
+
