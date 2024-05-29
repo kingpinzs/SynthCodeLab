@@ -1,0 +1,24 @@
+{
+  "lessons": [
+    {
+      "id": "lesson1",
+      "title": "Lesson 1: Introduction to OS Development",
+      "content": "Welcome to the first lesson. You will start by learning a few estils about the pc. The few major things you will need to know are about the cpu, the bios, the ram and the storage drive."
+    },
+    {
+      "id": "lesson2",
+      "title": "Lesson 2: Knowing the boot process",
+      "content": "In this lesson, you will learn the typical boot process of an x86 system."
+    },
+    {
+      "id": "lesson3",
+      "title": "Lesson 3: Knowing the boot process",
+      "content": "In this lesson, you will learn the typical boot process of an x86 system."
+    },
+    {
+      "id": "lesson4",
+      "title": "Lesson 4: Knowing the boot process",
+      "content": "In this lesson, you will learn the typical boot process of an x86 system."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+---
+layout: layout.njk
+pagination:
+  data: collections.lessons
+  size: 1
+  alias: lesson
+  addAllPagesToCollections: true
+permalink: "lessons/{{ lesson.id }}.html"
+title: "{{ lesson.title }}"
+---
+
+<h1>{{ lesson.title }}</h1>
+<p>{{ lesson.content }}</p>
+<a href="/quizzes/{{ lesson.id }}.html">Take Quiz</a>

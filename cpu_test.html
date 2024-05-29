@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Simulation and Boot Process</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #tabs button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .tab-content {
+            display: none;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+        .tab-content.active {
+            display: flex;
+        }
+        #cpuCanvas, #bootCanvas, #pcCanvas, #mbrCanvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        #details {
+            margin-left: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            background-color: #fff;
+            width: 300px;
+        }
+        #controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="tabs">
+        <button onclick="showTab('cpuSimulation')">CPU Simulation</button>
+        <button onclick="showTab('bootProcess')">Boot Process</button>
+        <button onclick="showTab('mbrDetail')">MBR Detail</button>
+    </div>
+    <div id="cpuSimulation" class="tab-content">
+        <canvas id="cpuCanvas" width="800" height="400"></canvas>
+        <div id="controls">
+            <button onclick="runProgram()">Run Program</button>
+        </div>
+    </div>
+    <div id="bootProcess" class="tab-content">
+        <canvas id="pcCanvas" width="800" height="400"></canvas>
+        <div id="details">
+            <h3>Step Details</h3>
+            <p id="stepDetails">Click "Start Boot Process" to see details.</p>
+        </div>
+        <div id="controls">
+            <button onclick="startBootProcess()">Start Boot Process</button>
+            <button onclick="restartBootProcess()">Restart Boot Process</button>
+        </div>
+    </div>
+    <div id="mbrDetail" class="tab-content">
+        <canvas id="mbrCanvas" width="800" height="400"></canvas>
+        <div id="details">
+            <h3>MBR Details</h3>
+            <p id="mbrDetails">Click "Start MBR Process" to see details.</p>
+        </div>
+        <div id="controls">
+            <button onclick="startMBRProcess()">Start MBR Process</button>
+            <button onclick="restartMBRProcess()">Restart MBR Process</button>
+        </div>
+    </div>
+    <script src="cpu.js"></script>
+    <script src="mbr.js"></script>
+</body>
+</html>
