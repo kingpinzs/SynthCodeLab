@@ -57,5 +57,15 @@ title: Home
                 <li><a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a></li>
             </ul>
         </section>
+            <!-- OS Selection Modal -->
+    <div id="osModal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome! Select Your OS</h2>
+            <p>Which operating system are you using?</p>
+            <button onclick="selectOS('Windows')">Windows</button>
+            <button onclick="selectOS('Linux')">Linux</button>
+            <button onclick="selectOS('MacOS')">MacOS</button>
+        </div>
+    </div>
     </div>
 </main>
