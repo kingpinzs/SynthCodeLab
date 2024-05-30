@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lesson 6: Understanding Memory Segmentation</title>
+        <link rel="stylesheet" href="/SynthCodeLab/css/styles.css">
+          <script>
+            window.baseUrl = '/SynthCodeLab/';
+        </script>
+    </head>
+    <body>
+        <header>
+    <h1>OS Creation Course</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#overview">Overview</a></li>
+            <li><a href="/#lessons">Lessons</a></li>
+            <li><a href="/#progress">Progress</a></li>
+            <li><a href="/#resources">Resources</a></li>
+            <li><a href="/#preferences">Preferences</a></li>
+        </ul>
+    </nav>
+</header>
+
+        <main>
+            <main>
+    <div class="container">
+      <h1>Lesson 6: Understanding Memory Segmentation</h1>
+      <p>Step 1: Basic Concepts of Memory Segmentation
+
+In x86 architecture, memory is divided into segments. Each segment can hold up to 64KB of data. Segmentation allows the CPU to access more memory than what a 16-bit address can directly address (64KB).
+
+    Segment Registers: These registers hold the addresses of segments.
+        CS (Code Segment): Holds the address of the code segment.
+        DS (Data Segment): Holds the address of the data segment.
+        SS (Stack Segment): Holds the address of the stack segment.
+        ES, FS, GS: Additional segment registers.
+
+Step 2: Displaying Memory Segment Values
+
+Let&#39;s update the bootloader to display the values of segment registers.</p>
+      <a href="/SynthCodeLab/quizzes/lesson9.html">Take Quiz</a>
+    </div>
+</main>
+
+        </main>
+        <footer>
+    <section id="resources">
+        <h2>Additional Resources</h2>
+        <ul>
+            <li><a href="https://github.com/pages-example">GitHub Repository</a></li>
+            <li><a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a></li>
+        </ul>
+    </section>
+    <p>&copy; 2024 OS Creation Course. All rights reserved.</p>
+</footer>
+<script src="/SynthCodeLab/js/scripts.js"></script>
+    </body>
+</html>
