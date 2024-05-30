@@ -28,22 +28,19 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("lessons", function(collectionApi) {
     return require("./src/_data/lessons.json").lessons.map(lesson => ({
       ...lesson,
-      url: `lessons/${lesson.id}.html`
+      url: `lessons/${lesson.id}.html`,
+      title: lesson.title,
     }));
   });
 
   // Add custom collection for quizzes
   eleventyConfig.addCollection("quizzes", function(collectionApi) {
-    const quizzes = require("./src/_data/quizzes.json").quizzes;
+    const quizzes = require("./src/data/quizzes.json").quizzes;
     return Object.keys(quizzes).map(quizId => ({
       id: quizId,
       questions: quizzes[quizId],
       url: `quizzes/${quizId}.html`
     }));
-  });
-
-  eleventyConfig.on('afterBuild', () => {
-    console.log('Files in json-editor directory should be copied to _site/json-editor');
   });
 
   return {

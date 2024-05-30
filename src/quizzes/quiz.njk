@@ -6,7 +6,8 @@ pagination:
   alias: quiz
   addAllPagesToCollections: true
 permalink: "quizzes/{{ quiz.id }}.html"
-title: Quiz for {{ quiz.id }}
+eleventyComputed:
+  title: "Quiz for {{ quiz.id }}"
 ---
 
 <h1>Quiz for {{ quiz.id }}</h1>

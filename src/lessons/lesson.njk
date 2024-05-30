@@ -6,7 +6,8 @@ pagination:
   alias: lesson
   addAllPagesToCollections: true
 permalink: "lessons/{{ lesson.id }}.html"
-title: "{{ lesson.title }}"
+eleventyComputed:
+  title: "{{ lesson.title }}"
 ---
 
 <h1>{{ lesson.title }}</h1>
