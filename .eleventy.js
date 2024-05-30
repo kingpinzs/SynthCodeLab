@@ -1,11 +1,20 @@
 const filters = require("./filters.js");
 
 module.exports = function(eleventyConfig) {
+
+  eleventyConfig.setTemplateFormats([
+		"js",
+		"css",
+    "md",
+    "html",
+    "njk",
+	]);
   // Passthrough copy for static files
+  eleventyConfig.addPassthroughCopy("src/json-editor");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/json-editor");
+
 
   // Add custom filter for next lesson
   eleventyConfig.addNunjucksFilter("nextLesson", function(currentLessonId) {
@@ -29,6 +38,10 @@ module.exports = function(eleventyConfig) {
       questions: quizzes[quizId],
       url: `quizzes/${quizId}.html`
     }));
+  });
+
+  eleventyConfig.on('afterBuild', () => {
+    console.log('Files in json-editor directory should be copied to _site/json-editor');
   });
 
   return {
