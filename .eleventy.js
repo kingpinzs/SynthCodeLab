@@ -8,12 +8,14 @@ module.exports = function(eleventyConfig) {
     "md",
     "html",
     "njk",
+    "json"
 	]);
   // Passthrough copy for static files
   eleventyConfig.addPassthroughCopy("src/json-editor");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/data/quizzes.json");
 
 
   // Add custom filter for next lesson
