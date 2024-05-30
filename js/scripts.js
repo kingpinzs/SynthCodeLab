@@ -65,7 +65,7 @@ function checkAnswers() {
     const nextLesson = document.getElementById('nextLesson');
     let score = 0;
 
-    fetch('{{ site.baseUrl }}/data/quizzes.json')
+    fetch(`${window.baseUrl}data/quizzes.json`)
         .then(response => response.json())
         .then(data => {
             const quizId = 'lesson1'; // Use dynamic way to get the quiz ID based on the context
@@ -165,7 +165,7 @@ function checkAnswers(quizId) {
     const nextLesson = document.getElementById('nextLesson');
     let score = 0;
 
-    fetch('{{ site.baseUrl }}/data/quizzes.json')
+    fetch(`${window.baseUrl}data/quizzes.json`)
         .then(response => response.json())
         .then(data => {
             const questions = data.quizzes[quizId];
@@ -183,7 +183,7 @@ function checkAnswers(quizId) {
 
             if (score === totalQuestions) {
                 nextLesson.style.display = 'block';
-                updateLastLesson(`/lessons/${quizId | nextLesson}.html`);
+                updateLastLesson(`${window.baseUrl}lessons/${quizId | nextLesson}.html`);
             }
         });
 }
