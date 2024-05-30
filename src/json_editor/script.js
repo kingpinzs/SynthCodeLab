@@ -1,5 +1,20 @@
 let lessons = [];
 
+// Load JSON from GitHub
+async function loadJSON() {
+  try {
+    const response = await fetch('https://raw.githubusercontent.com/kingpinzs/SynthCodeLab/main/src/_data/lessons.json');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    lessons = data.lessons || [];
+    displayJSON();
+  } catch (error) {
+    alert('Failed to load JSON: ' + error.message);
+  }
+}
+
 function addLesson() {
   const title = document.getElementById('title').value;
   const content = document.getElementById('content').value;

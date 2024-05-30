@@ -5,6 +5,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/json-editor");
 
   // Add custom filter for next lesson
   eleventyConfig.addNunjucksFilter("nextLesson", function(currentLessonId) {
