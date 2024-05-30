@@ -31,6 +31,39 @@
       <p>Step 1: Understanding Assembly Basics
 
 Let&#39;s start with some basic assembly instructions. Here&#39;s a simple bootloader with detailed comments explaining each term:</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[org 0x7c00] ; Set the origin to 0x7c00, which is where the BIOS loads the boot sector
+
+; Clear the screen
+mov ah, 0x00 ; mov: move data, ah: upper 8 bits of the AX register, 0x00: video mode 0
+mov al, 0x03 ; al: lower 8 bits of the AX register, 0x03: clear screen and move cursor to upper left
+int 0x10     ; int: interrupt, 0x10: BIOS video service
+
+; Print &quot;Hello, OS!&quot;
+mov si, msg  ; mov: move data, si: source index register, msg: address of the message
+call print_string ; call: call a subroutine, print_string: the subroutine to print a string
+
+; Infinite loop to keep the OS running
+hang:
+    jmp hang ; jmp: jump to a label, hang: the label to jump to
+
+; Function to print a string
+print_string:
+    mov ah, 0x0E ; mov: move data, ah: upper 8 bits of the AX register, 0x0E: teletype output
+.repeat:
+    lodsb       ; lodsb: load string byte, load a byte from the address in si into al
+    or al, al   ; or: logical OR, al: the byte just loaded, this checks if it&#39;s the null terminator
+    jz .done    ; jz: jump if zero, .done: the label to jump to if al is zero (end of string)
+    int 0x10    ; int: interrupt, 0x10: BIOS video service to print the character in al
+    jmp .repeat ; jmp: jump to a label, .repeat: the label to jump to
+.done:
+    ret         ; ret: return from subroutine
+
+msg db &#39;Hello, OS!&#39;, 0 ; db: define byte, &#39;Hello, OS!&#39;: the message to print, 0: null terminator
+
+times 510-($-$$) db 0  ; Fill the rest of the boot sector with zeros
+dw 0xAA55              ; Boot sector signature
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson5.html">Take Quiz</a>
     </div>
 </main>

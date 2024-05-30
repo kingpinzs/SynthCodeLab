@@ -31,6 +31,26 @@
       <p>Step 1: Update Bootloader to Display a Character
 
 Let&#39;s enhance your bootloader to display a single character on the screen. We&#39;ll use BIOS interrupts to handle this.</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[org 0x7c00] ; Set the origin to 0x7c00, which is where the BIOS loads the boot sector
+
+; Clear the screen
+mov ah, 0x00 ; mov: move data, ah: upper 8 bits of the AX register, 0x00: video mode 0 (clear screen)
+mov al, 0x03 ; al: lower 8 bits of the AX register, 0x03: clear screen and move cursor to upper left
+int 0x10     ; int: interrupt, 0x10: BIOS video service
+
+; Print a single character &#39;A&#39;
+mov ah, 0x0E ; mov: move data, ah: upper 8 bits of the AX register, 0x0E: teletype output
+mov al, &#39;A&#39;  ; al: lower 8 bits of the AX register, &#39;A&#39;: ASCII code for character &#39;A&#39;
+int 0x10     ; int: interrupt, 0x10: BIOS video service
+
+; Infinite loop to keep the OS running
+hang:
+    jmp hang ; jmp: jump to a label, hang: the label to jump to
+
+times 510-($-$$) db 0  ; Fill the rest of the boot sector with zeros
+dw 0xAA55              ; Boot sector signature
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson6.html">Take Quiz</a>
     </div>
 </main>

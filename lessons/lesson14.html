@@ -31,6 +31,33 @@
       <p>Step 1: Create a Simple Kernel in C
 
 Let&#39;s write a simple kernel in C that prints a message to the screen. Create a file called kernel.c in the kernel directory:</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>void kmain(void) {
+    const char *str = &quot;Hello from Kernel!&quot;;
+    char *vidptr = (char*)0xb8000;  // Video memory starts here
+    unsigned int i = 0;
+    unsigned int j = 0;
+
+    // Clear the screen by writing spaces to video memory
+    while(j &lt; 80 * 25 * 2) {
+        vidptr[j] = &#39; &#39;;
+        vidptr[j+1] = 0x07;  // Attribute byte - light grey on black background
+        j = j + 2;
+    }
+
+    j = 0;
+
+    // Write the string to video memory
+    while(str[j] != &#39;&#92;0&#39;) {
+        vidptr[i] = str[j];
+        vidptr[i+1] = 0x07;  // Attribute byte - light grey on black background
+        ++j;
+        i = i + 2;
+    }
+
+    return;
+}
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson14.html">Take Quiz</a>
     </div>
 </main>

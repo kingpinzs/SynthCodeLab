@@ -31,6 +31,79 @@
       <p>Step 1: Setting Up Global Descriptor Table (GDT)
 
 To switch to 32-bit protected mode, we need to set up the GDT, which defines the memory segments for the CPU.</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[org 0x7c00]
+
+; Global Descriptor Table (GDT)
+gdt_start:
+    ; Null Descriptor
+    dq 0x0000000000000000
+    ; Code Segment Descriptor
+    dq 0x00CF9A000000FFFF
+    ; Data Segment Descriptor
+    dq 0x00CF92000000FFFF
+gdt_end:
+
+gdt_ptr:
+    dw gdt_end - gdt_start - 1 ; Limit
+    dd gdt_start               ; Base
+
+; Clear the screen
+mov ah, 0x00
+mov al, 0x03
+int 0x10
+
+; Load GDT
+lgdt [gdt_ptr]
+
+; Enable A20 line
+call enable_a20
+
+; Switch to protected mode
+cli                      ; Clear interrupts
+mov eax, cr0
+or eax, 1                ; Set PE bit (Protection Enable)
+mov cr0, eax
+jmp 0x08:protected_mode  ; Far jump to flush the prefetch queue
+
+enable_a20:
+    in al, 0x64
+    or al, 0x02
+    out 0x64, al
+    ret
+
+protected_mode:
+    mov ax, 0x10         ; Data segment selector
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    mov esp, 0x90000     ; Set stack pointer
+
+    ; Print a message
+    mov si, msg
+    call print_string
+
+    ; Infinite loop to keep the OS running
+    jmp $
+
+print_string:
+    mov ah, 0x0E
+.repeat:
+    lodsb
+    or al, al
+    jz .done
+    int 0x10
+    jmp .repeat
+.done:
+    ret
+
+msg db &#39;Entered 32-bit Protected Mode!&#39;, 0
+
+times 510-($-$$) db 0
+dw 0xAA55
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson10.html">Take Quiz</a>
     </div>
 </main>

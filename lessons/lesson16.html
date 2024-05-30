@@ -33,6 +33,36 @@
 We&#39;ll write a simple kernel in assembly that prints &quot;Hello from Kernel!&quot; to the screen.
 
 Create a file called kernel.asm in the kernel directory:</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[bits 32]
+section .text
+global start
+
+start:
+    ; Print a message
+    mov esi, msg
+    call print_string
+
+    ; Infinite loop to keep the kernel running
+    hlt
+    jmp $
+
+print_string:
+    mov ebp, 0xb8000     ; Video memory address
+    mov ebx, 0           ; Index
+.next_char:
+    lodsb                ; Load byte at address [esi] into AL
+    or al, al            ; Check if the byte is 0 (end of string)
+    jz .done             ; If zero, we are done
+    mov [ebp + ebx], al  ; Write character to video memory
+    mov byte [ebp + ebx + 1], 0x07 ; Write attribute byte (light grey on black background)
+    add ebx, 2           ; Move to the next character position
+    jmp .next_char       ; Repeat for next character
+.done:
+    ret                  ; Return from subroutine
+
+msg db &#39;Hello from Kernel!&#39;, 0
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson16.html">Take Quiz</a>
     </div>
 </main>

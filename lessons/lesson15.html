@@ -31,6 +31,11 @@
       <p>Step 1: Combine Bootloader and Kernel into a Disk Image
 
 We&#39;ll combine the bootloader and kernel into a single disk image.</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>cat boot/boot.bin kernel/kernel.bin &gt; os-image.bin
+
+qemu-system-x86_64 -drive format=raw,file=os-image.bin
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson15.html">Take Quiz</a>
     </div>
 </main>

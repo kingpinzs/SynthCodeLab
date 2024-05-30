@@ -41,6 +41,53 @@ In x86 architecture, memory is divided into segments. Each segment can hold up t
 Step 2: Displaying Memory Segment Values
 
 Let&#39;s update the bootloader to display the values of segment registers.</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[org 0x7c00]
+
+; Clear the screen
+mov ah, 0x00
+mov al, 0x03
+int 0x10
+
+; Print segment register values
+mov ax, cs
+call print_hex
+mov ax, ds
+call print_hex
+mov ax, ss
+call print_hex
+mov ax, es
+call print_hex
+
+; Infinite loop to keep the OS running
+hang:
+    jmp hang
+
+print_hex:
+    pusha          ; Save all general-purpose registers
+    mov cx, 4      ; We will print 4 hex digits
+    mov bx, 0xF000 ; Mask for extracting hex digits
+.next_digit:
+    rol ax, 4      ; Rotate left 4 bits
+    push ax        ; Save ax
+    and al, 0x0F   ; Isolate the lower 4 bits
+    cmp al, 10
+    jl .digit_ok
+    add al, &#39;A&#39; - 10
+    jmp .digit_done
+.digit_ok:
+    add al, &#39;0&#39;
+.digit_done:
+    mov ah, 0x0E
+    int 0x10       ; Print character in al
+    pop ax         ; Restore ax
+    loop .next_digit
+    popa           ; Restore all general-purpose registers
+    ret            ; Return to caller
+
+times 510-($-$$) db 0
+dw 0xAA55
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson9.html">Take Quiz</a>
     </div>
 </main>

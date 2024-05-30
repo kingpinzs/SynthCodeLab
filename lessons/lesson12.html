@@ -33,6 +33,33 @@
 Let&#39;s create a simple kernel entry point in assembly. This will be the starting point of our kernel after switching to protected mode.
 
 Create a file called kernel.asm in the kernel directory:</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[bits 32]
+section .text
+global start
+
+start:
+    ; Print a message
+    mov si, msg
+    call print_string
+
+    ; Infinite loop to keep the kernel running
+    hlt
+    jmp $
+
+print_string:
+    mov ah, 0x0E
+.repeat:
+    lodsb
+    or al, al
+    jz .done
+    int 0x10
+    jmp .repeat
+.done:
+    ret
+
+msg db &#39;Hello from Kernel!&#39;, 0
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson12.html">Take Quiz</a>
     </div>
 </main>

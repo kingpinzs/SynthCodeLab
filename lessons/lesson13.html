@@ -31,6 +31,90 @@
       <p>Step 1: Update the Bootloader to Load the Kernel
 
 We&#39;ll modify our bootloader to load the kernel into memory and jump to it.</p>
+      <p><strong>Example Code:</strong></p>
+      <pre>[org 0x7c00]
+
+; Global Descriptor Table (GDT)
+gdt_start:
+    ; Null Descriptor
+    dq 0x0000000000000000
+    ; Code Segment Descriptor
+    dq 0x00CF9A000000FFFF
+    ; Data Segment Descriptor
+    dq 0x00CF92000000FFFF
+gdt_end:
+
+gdt_ptr:
+    dw gdt_end - gdt_start - 1 ; Limit
+    dd gdt_start               ; Base
+
+; Clear the screen
+mov ah, 0x00
+mov al, 0x03
+int 0x10
+
+; Load GDT
+lgdt [gdt_ptr]
+
+; Enable A20 line
+call enable_a20
+
+; Switch to protected mode
+cli                      ; Clear interrupts
+mov eax, cr0
+or eax, 1                ; Set PE bit (Protection Enable)
+mov cr0, eax
+jmp 0x08:protected_mode  ; Far jump to flush the prefetch queue
+
+enable_a20:
+    in al, 0x64
+    or al, 0x02
+    out 0x64, al
+    ret
+
+protected_mode:
+    mov ax, 0x10         ; Data segment selector
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    mov esp, 0x90000     ; Set stack pointer
+
+    ; Load the kernel (assuming it is located at sector 2)
+    mov eax, 0x2000      ; Kernel load address
+    mov ebx, 2           ; Starting sector (sector 2)
+    call load_kernel
+
+    ; Jump to the kernel entry point
+    jmp 0x08:0x2000
+
+load_kernel:
+    ; Read sectors into memory at address in eax
+    pusha
+    mov edx, eax
+    mov ecx, 1           ; Number of sectors to read
+    mov ebx, 2           ; Starting sector
+.read_sector:
+    ; Read sector
+    mov ah, 0x02         ; BIOS read sector function
+    mov al, cl           ; Number of sectors to read
+    mov ch, 0x00         ; Track number (cylinder)
+    mov cl, 0x02         ; Starting sector
+    mov dh, 0x00         ; Head number
+    mov dl, 0x80         ; Drive number (first hard drive)
+    int 0x13             ; BIOS disk service
+    jc .error            ; Jump if carry flag is set (error)
+    add edx, 512         ; Move to the next sector in memory
+    dec ecx              ; Decrement sector counter
+    jnz .read_sector     ; If more sectors to read, loop
+.error:
+    popa
+    ret
+
+times 510-($-$$) db 0
+dw 0xAA55
+</pre>
       <a href="/SynthCodeLab/quizzes/lesson13.html">Take Quiz</a>
     </div>
 </main>
