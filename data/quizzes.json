@@ -1,0 +1,24 @@
+{
+    "quizzes": {
+      "lesson1": [
+        {
+          "id": "quiz1",
+          "question": "What is a bootloader?",
+          "options": ["A program that loads the OS", "A type of hardware", "A network protocol"],
+          "answer": "A program that loads the OS"
+        }
+
+      ],
+      "lesson2": [
+        {
+          "id": "quiz2",
+          "question": "What is the purpose of the kernel?",
+          "options": ["To manage system resources", "To display the user interface", "To handle networking"],
+          "answer": "To manage system resources"
+        }
+
+      ]
+
+    }
+  }
+  
