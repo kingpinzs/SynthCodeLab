@@ -24,7 +24,7 @@ jobs:
       - name: Build the site
         run: npm run build  # Adjust this command to match your build script
         env:
-          BASE_URL: "/SynthCodeLab"  # Replace with your repository name
+          BASE_URL: "/kingpinzs/SynthCodeLab"  # Replace with your repository name
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
