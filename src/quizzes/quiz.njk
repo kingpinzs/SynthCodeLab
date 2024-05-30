@@ -9,24 +9,27 @@ permalink: "quizzes/{{ quiz.id }}.html"
 eleventyComputed:
   title: "Quiz for {{ quiz.id }}"
 ---
-
-<h1>Quiz for {{ quiz.id }}</h1>
-<form id="quizForm">
-  {% for question in quiz.questions %}
-  <div>
-    <p>{{ question.question }}</p>
-    {% for option in question.options %}
-    <input type="radio" name="q{{ loop.index }}" value="{{ option }}"> {{ option }}<br>
-    {% endfor %}
-  </div>
-  {% endfor %}
-  <button type="button" onclick="checkAnswers('{{ quiz.id }}')">Submit</button>
-</form>
-<div id="results"></div>
-<div id="nextLesson" style="display: none;">
-  {% set nextLessonId = quiz.id | nextLesson %}
-  {% if nextLessonId %}
-  <a href="{{ site.baseUrl }}lessons/{{ nextLessonId }}.html"><button>Go to Next Lesson</button></a>
-  {% endif %}
-</div>
-<script src="{{ site.baseUrl }}js/scripts.js"></script>
+<main>
+    <div class="container">
+        <h1>Quiz for {{ quiz.id }}</h1>
+        <form id="quizForm">
+          {% for question in quiz.questions %}
+          <div>
+            <p>{{ question.question }}</p>
+            {% for option in question.options %}
+            <input type="radio" name="q{{ loop.index }}" value="{{ option }}"> {{ option }}<br>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          <button type="button" onclick="checkAnswers('{{ quiz.id }}')">Submit</button>
+        </form>
+        <div id="results"></div>
+        <div id="nextLesson" style="display: none;">
+          {% set nextLessonId = quiz.id | nextLesson %}
+          {% if nextLessonId %}
+          <a href="{{ site.baseUrl }}lessons/{{ nextLessonId }}.html"><button>Go to Next Lesson</button></a>
+          {% endif %}
+        </div>
+        <script src="{{ site.baseUrl }}js/scripts.js"></script>
+    </div>
+</main>

@@ -9,7 +9,10 @@ permalink: "lessons/{{ lesson.id }}.html"
 eleventyComputed:
   title: "{{ lesson.title }}"
 ---
-
-<h1>{{ lesson.title }}</h1>
-<p>{{ lesson.content }}</p>
-<a href="{{ site.baseUrl }}quizzes/{{ lesson.id }}.html">Take Quiz</a>
+<main>
+    <div class="container">
+      <h1>{{ lesson.title }}</h1>
+      <p>{{ lesson.content }}</p>
+      <a href="{{ site.baseUrl }}quizzes/{{ lesson.id }}.html">Take Quiz</a>
+    </div>
+</main>
