@@ -26,7 +26,7 @@ eleventyComputed:
 <div id="nextLesson" style="display: none;">
   {% set nextLessonId = quiz.id | nextLesson %}
   {% if nextLessonId %}
-  <a href="/lessons/{{ nextLessonId }}.html"><button>Go to Next Lesson</button></a>
+  <a href="{{ site.baseUrl }}lessons/{{ nextLessonId }}.html"><button>Go to Next Lesson</button></a>
   {% endif %}
 </div>
-<script src="/js/scripts.js"></script>
+<script src="{{ site.baseUrl }}js/scripts.js"></script>
