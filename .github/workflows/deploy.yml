@@ -22,12 +22,12 @@ jobs:
         run: npm install
 
       - name: Build the site
-        run: npm run build  # Adjust this command to match your build script
+        run: npm run build
         env:
-          BASE_URL: "/SynthCodeLab"  # Replace with your repository name
+          BASE_URL: "/SynthCodeLab/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: _site
+          publish_dir: ./_site
