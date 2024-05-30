@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz for {{ quiz.id }}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+    <h1>OS Creation Course</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#overview">Overview</a></li>
+            <li><a href="/#lessons">Lessons</a></li>
+            <li><a href="/#progress">Progress</a></li>
+            <li><a href="/#resources">Resources</a></li>
+            <li><a href="/#preferences">Preferences</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <main>
+        
+<h1>Quiz for lesson2</h1>
+<form id="quizForm">
+  
+  <div>
+    <p>What is the purpose of the kernel?</p>
+    
+    <input type="radio" name="q1" value="To manage system resources"> To manage system resources<br>
+    
+    <input type="radio" name="q2" value="To display the user interface"> To display the user interface<br>
+    
+    <input type="radio" name="q3" value="To handle networking"> To handle networking<br>
+    
+  </div>
+  
+  <button type="button" onclick="checkAnswers('lesson2')">Submit</button>
+</form>
+<div id="results"></div>
+<div id="nextLesson" style="display: none;">
+  
+  
+  <a href="/lessons/lesson3.html"><button>Go to Next Lesson</button></a>
+  
+</div>
+<script src="/js/scripts.js"></script>
+
+    </main>
+    <footer>
+    <section id="resources">
+        <h2>Additional Resources</h2>
+        <ul>
+            <li><a href="https://github.com/pages-example">GitHub Repository</a></li>
+            <li><a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a></li>
+        </ul>
+    </section>
+    <p>&copy; 2024 OS Creation Course. All rights reserved.</p>
+</footer>
+<script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, textarea {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>JSON Editor</h1>
+  <div>
+    <input type="text" id="title" placeholder="Title">
+    <textarea id="content" placeholder="Content" rows="4"></textarea>
+    <textarea id="exampleCode" placeholder="Example Code (optional)" rows="4"></textarea>
+    <button onclick="addLesson()">Add Lesson</button>
+    <button onclick="downloadJSON()">Download JSON</button>
+  </div>
+  <pre id="jsonOutput"></pre>
+  <script src="script.js"></script>
+</body>
+</html>
